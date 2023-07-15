@@ -11,7 +11,7 @@ jobs:
       - run: |
           python3 -m pip install black
       - run: |
-          python3 -m black --check linguistlab.py
+          python3 -m black --check $(git ls-files '*.py')
   mypy:
     runs-on: ubuntu-latest
     steps:
@@ -22,4 +22,15 @@ jobs:
       - run: |
           python3 -m pip install mypy==1.4.1
       - run: |
-          python3 -m mypy linguistlab.py
+          python3 -m mypy --strict $(git ls-files '*.py')
+  pylint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.11'
+      - run: |
+          python3 -m pip install pylint==v2.17.4
+      - run: |
+          pylint --disable=all --enable=unused-import $(git ls-files '*.py')

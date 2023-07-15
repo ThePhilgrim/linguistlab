@@ -1,16 +1,16 @@
 # **Welcome to LinguistLab**
 
-### A Co-pilot for Translators
+#### A Co-pilot for Translators
 
 More and more companies are moving to browser-based CAT tools for their localization needs. This can in many ways be convenient both for clients and translators. However, browser-based CAT tools often take power away from translators by default restrictions in permissions regarding e.g. editing glossaries.
 
 LinguistLab aims to, with time, become an all-in-one tool for translators to create and maintain glossaries, perform terminology searches online, calculate project rates, and much more.
 
-#### _Please note: LinguistLab is a newly started project, and therefore is not yet in a usable state._
+**_Please note: LinguistLab is a newly started project, and therefore is not yet in a usable state._**
 
 ## **For Users**
 
-To request a feature or report a bug, please create an issue here on Github.
+To request a feature or report a bug, please [create an issue](https://github.com/ThePhilgrim/linguistlab/issues) here on Github.
 
 ## **For Developers**
 

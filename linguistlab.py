@@ -1,8 +1,10 @@
 import csv
 import sys
 
+from typing import Dict, List, Any
 
-def read_glossary(csv_file):
+
+def read_glossary(csv_file: Any) -> Dict[str, List[str]]:
     glossary_content = {}
     with open(csv_file, newline="") as glossary_file:
         glossary = csv.reader(glossary_file)
@@ -16,10 +18,10 @@ def read_glossary(csv_file):
 
 
 class Glossary:
-    def __init__(self, glossary_content):
+    def __init__(self, glossary_content: Dict[str, List[str]] | Dict[Any, Any]):
         self.glossary_content = glossary_content
 
-    def search_source_term(self, search_term):
+    def search_source_term(self, search_term: str) -> Dict[str, List[str]]:
         search_results = {}
         for source_term in self.glossary_content.keys():
             if (

@@ -22,7 +22,10 @@ class Glossary:
     def search_source_term(self, search_term):
         search_results = {}
         for source_term in self.glossary_content.keys():
-            if search_term.lower() in source_term.lower() or source_term.lower() in search_term.lower():
+            if (
+                search_term.lower() in source_term.lower()
+                or source_term.lower() in search_term.lower()
+            ):
                 search_results[source_term] = self.glossary_content[source_term]
 
         return search_results

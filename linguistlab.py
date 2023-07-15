@@ -19,10 +19,15 @@ class Glossary:
     def __init__(self, glossary_content):
         self.glossary_content = glossary_content
 
-    # TODO
-    # def search_source_term(self):
-    #     pass
+    def search_source_term(self, search_term):
+        search_results = {}
+        for source_term in self.glossary_content.keys():
+            if search_term.lower() in source_term.lower() or source_term.lower() in search_term.lower():
+                search_results[source_term] = self.glossary_content[source_term]
 
+        return search_results
+
+    # TODO
     # def search_target_term(self):
     #     pass
 
@@ -45,4 +50,7 @@ class Glossary:
     #     pass
 
 
-print(read_glossary(sys.argv[1]))
+glossary_content = read_glossary(sys.argv[1])
+
+general = Glossary(glossary_content)
+general.search_source_term(sys.argv[2])

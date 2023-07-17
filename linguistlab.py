@@ -32,10 +32,10 @@ class Glossary:
 
         return search_results
 
-    # TODO
-    # def search_target_term(self):
-    #     pass
+    def search_target_term(self, search_term: str) -> Dict[str, List[str]]:
+        pass
 
+    # TODO
     # def add_source_term(self):
     #     pass
 

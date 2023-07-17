@@ -17,7 +17,6 @@ def read_glossary(csv_file: Any) -> Dict[str, List[str]]:
     return glossary_content
 
 
-# test
 class Glossary:
     def __init__(self, glossary_content: Dict[str, List[str]] | Dict[Any, Any]):
         self.glossary_content = glossary_content
@@ -56,7 +55,8 @@ class Glossary:
     #     pass
 
 
-glossary_content = read_glossary(sys.argv[1])
+if __name__ == "__main__":
+    glossary_content = read_glossary(sys.argv[1])
 
-general = Glossary(glossary_content)
-general.search_source_term(sys.argv[2])
+    general = Glossary(glossary_content)
+    general.search_source_term(sys.argv[2])

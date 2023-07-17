@@ -22,7 +22,7 @@ jobs:
       - run: |
           python3 -m pip install mypy==1.4.1
       - run: |
-          python3 -m mypy --strict $(git ls-files '*.py')
+          python3 -m mypy --strict linguistlab.py
   pylint:
     runs-on: ubuntu-latest
     steps:

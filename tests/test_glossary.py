@@ -32,16 +32,16 @@ def test_search_source_term(glossary):
 
 
 def test_search_target_term(glossary):
-    search_one = glossary.seach_target_term("hej")
+    search_one = glossary.search_target_term("hej")
     assert search_one == {"hello": ["hej", "hallå"]}
 
-    search_two = glossary.seach_target_term("hallå")
+    search_two = glossary.search_target_term("hallå")
     assert search_two == {"hello": ["hej", "hallå"]}
 
-    search_three = glossary.seach_target_term("kort")
+    search_three = glossary.search_target_term("kort")
     assert search_three == {"card": ["kort"], "shorter": ["kortare"]}
 
-    search_four = glossary.seach_target_term("kortare")
+    search_four = glossary.search_target_term("kortare")
     assert search_four == {"card": ["kort"], "shorter": ["kortare"]}
 
     search_five = glossary.search_source_term("hello")

@@ -45,8 +45,8 @@ def test_search_target_term(glossary):
     search_four = glossary.search_target_term("kortare")
     assert search_four == {"shorter": ["kortare"]}
 
-    search_five = glossary.search_source_term("hello")
+    search_five = glossary.search_target_term("hello")
     assert search_five == {}
 
-    search_six = glossary.search_source_term("helikopter")
+    search_six = glossary.search_target_term("helikopter")
     assert search_six == {}

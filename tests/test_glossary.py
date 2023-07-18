@@ -8,6 +8,7 @@ def glossary():
         "hello": ["hej", "hallå"],
         "car": ["bil"],
         "card": ["kort"],
+        "short": ["kort"],
         "shorter": ["kortare"],
     }
     test_glossary = Glossary(test_glossary_content)
@@ -39,7 +40,7 @@ def test_search_target_term(glossary):
     assert search_two == {"hello": ["hej", "hallå"]}
 
     search_three = glossary.search_target_term("kort")
-    assert search_three == {"card": ["kort"]}
+    assert search_three == {"card": ["kort"], "short": ["kort"]}
 
     search_four = glossary.search_target_term("kortare")
     assert search_four == {"shorter": ["kortare"]}

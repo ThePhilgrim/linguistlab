@@ -39,10 +39,10 @@ def test_search_target_term(glossary):
     assert search_two == {"hello": ["hej", "hallå"]}
 
     search_three = glossary.search_target_term("kort")
-    assert search_three == {"card": ["kort"], "shorter": ["kortare"]}
+    assert search_three == {"card": ["kort"]}
 
     search_four = glossary.search_target_term("kortare")
-    assert search_four == {"card": ["kort"], "shorter": ["kortare"]}
+    assert search_four == {"shorter": ["kortare"]}
 
     search_five = glossary.search_source_term("hello")
     assert search_five == {}

@@ -32,10 +32,14 @@ class Glossary:
 
         return search_results
 
-    # TODO
-    # def search_target_term(self):
-    #     pass
+    def search_target_term(self, search_term: str) -> Dict[str, List[str]]:
+        search_results = {}
+        for source_term in self.glossary_content.keys():
+            if search_term in self.glossary_content[source_term]:
+                search_results[source_term] = self.glossary_content[source_term]
+        return search_results
 
+    # TODO
     # def add_source_term(self):
     #     pass
 

@@ -11,7 +11,7 @@ def glossary():
         "short": ["kort"],
         "shorter": ["kortare"],
     }
-    test_glossary = Glossary(test_glossary_content)
+    test_glossary = Glossary("Test", test_glossary_content)
     return test_glossary
 
 
@@ -50,3 +50,39 @@ def test_search_target_term(glossary):
 
     search_six = glossary.search_target_term("helikopter")
     assert search_six == {}
+
+
+def test_add_source_term(glossary):
+    with pytest.raises(ValueError, match="Source term already exists in Test"):
+        glossary.add_source_term("car")
+
+    assert glossary.glossary_content == {
+        "hello": ["hej", "hallå"],
+        "car": ["bil"],
+        "card": ["kort"],
+        "short": ["kort"],
+        "shorter": ["kortare"],
+    }
+
+    glossary.add_source_term("bed")
+
+    assert glossary.glossary_content == {
+        "hello": ["hej", "hallå"],
+        "car": ["bil"],
+        "card": ["kort"],
+        "short": ["kort"],
+        "shorter": ["kortare"],
+        "bed": [],
+    }
+
+    glossary.add_source_term("walk", ["gå", "vandra"])
+
+    assert glossary.glossary_content == {
+        "hello": ["hej", "hallå"],
+        "car": ["bil"],
+        "card": ["kort"],
+        "short": ["kort"],
+        "shorter": ["kortare"],
+        "bed": [],
+        "walk": ["gå", "vandra"],
+    }

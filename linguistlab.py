@@ -50,8 +50,6 @@ class Glossary:
             self.glossary_content[source_term] = target_terms
 
     # TODO
-    # def add_source_term(self):
-    #     pass
 
     # def add_target_term(self):
     #     pass

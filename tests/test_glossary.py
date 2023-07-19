@@ -86,3 +86,35 @@ def test_add_source_term(glossary):
         "bed": [],
         "walk": ["gå", "vandra"],
     }
+
+
+def test_delete_source_term(glossary):
+    with pytest.raises(KeyError, match="The term does not exist in Test"):
+        glossary.delete_source_term("ball")
+
+    assert glossary.glossary_content == {
+        "hello": ["hej", "hallå"],
+        "car": ["bil"],
+        "card": ["kort"],
+        "short": ["kort"],
+        "shorter": ["kortare"],
+    }
+
+    glossary.delete_source_term("car")
+
+    assert glossary.glossary_content == {
+        "hello": ["hej", "hallå"],
+        "card": ["kort"],
+        "short": ["kort"],
+        "shorter": ["kortare"],
+    }
+
+    with pytest.raises(KeyError, match="The term does not exist in Test"):
+        glossary.delete_source_term("kortare")
+
+    assert glossary.glossary_content == {
+        "hello": ["hej", "hallå"],
+        "card": ["kort"],
+        "short": ["kort"],
+        "shorter": ["kortare"],
+    }

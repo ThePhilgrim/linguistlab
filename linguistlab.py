@@ -49,15 +49,17 @@ class Glossary:
         elif source_term not in self.glossary_content.keys() and target_terms is not None:
             self.glossary_content[source_term] = target_terms
 
-    # TODO
+    def delete_source_term(self, source_term: str) -> None:
+        if source_term not in self.glossary_content.keys():
+            raise KeyError(f"The term does not exist in {self.name}")
+        elif source_term in self.glossary_content.keys():
+            del self.glossary_content[source_term]
 
+    # TODO
     # def add_target_term(self):
     #     pass
 
     # def edit_term(self):
-    #     pass
-
-    # def delete_source_term(self):
     #     pass
 
     # def delete_target_term(self):

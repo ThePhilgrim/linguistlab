@@ -1,7 +1,7 @@
 import csv
 import sys
 
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 
 
 def read_glossary(csv_file: Any) -> Dict[str, List[str]]:
@@ -18,7 +18,8 @@ def read_glossary(csv_file: Any) -> Dict[str, List[str]]:
 
 
 class Glossary:
-    def __init__(self, glossary_content: Dict[str, List[str]] | Dict[Any, Any]):
+    def __init__(self, name: str, glossary_content: Dict[str, List[str]] | Dict[Any, Any]):
+        self.name = name
         self.glossary_content = glossary_content
 
     def search_source_term(self, search_term: str) -> Dict[str, List[str]]:
@@ -39,9 +40,16 @@ class Glossary:
                 search_results[source_term] = self.glossary_content[source_term]
         return search_results
 
+    # TODO: Add functionality for merging/replacing terms if source term already in glossary.
+    def add_source_term(self, source_term: str, target_terms: Optional[List[str]] = None) -> None:
+        if source_term in self.glossary_content.keys():
+            raise ValueError(f"Source term already exists in {self.name}.")
+        elif source_term not in self.glossary_content.keys() and target_terms is None:
+            self.glossary_content[source_term] = []
+        elif source_term not in self.glossary_content.keys() and target_terms is not None:
+            self.glossary_content[source_term] = target_terms
+
     # TODO
-    # def add_source_term(self):
-    #     pass
 
     # def add_target_term(self):
     #     pass
@@ -62,5 +70,5 @@ class Glossary:
 if __name__ == "__main__":
     glossary_content = read_glossary(sys.argv[1])
 
-    general = Glossary(glossary_content)
+    general = Glossary("Developing", glossary_content)
     general.search_source_term(sys.argv[2])

@@ -1,6 +1,5 @@
 import csv
 import pathlib
-import sys
 
 from tkinter import filedialog
 from typing import Dict, List, Any, Optional

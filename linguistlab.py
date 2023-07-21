@@ -5,7 +5,7 @@ from tkinter import filedialog
 from typing import Dict, List, Any, Optional
 
 
-# TODO: Handle wrongly formatted glossary/csv files
+# TODO: Handle wrongly formatted glossary/csv files and choosing "Cancel" when asking file
 def open_glossary() -> "Glossary":
     path = pathlib.Path(filedialog.askopenfilename())
 

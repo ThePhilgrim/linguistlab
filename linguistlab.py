@@ -1,12 +1,21 @@
 import csv
-import sys
+import pathlib
 
+from tkinter import filedialog
 from typing import Dict, List, Any, Optional
 
 
-def read_glossary(csv_file: Any) -> Dict[str, List[str]]:
+# TODO: Handle wrongly formatted glossary/csv files and choosing "Cancel" when asking file
+def open_glossary() -> "Glossary":
+    path = pathlib.Path(filedialog.askopenfilename())
+
+    if path.suffix != ".csv":
+        raise TypeError("LinguistLab currently only supports glossaries in .csv format.")
+
+    glossary_name = path.stem.title()
+
     glossary_content = {}
-    with open(csv_file, newline="") as glossary_file:
+    with open(path, newline="") as glossary_file:
         glossary = csv.reader(glossary_file)
         for row in glossary:
             translations = []
@@ -14,7 +23,7 @@ def read_glossary(csv_file: Any) -> Dict[str, List[str]]:
                 translations.append(translation)
             glossary_content[row[0]] = translations
 
-    return glossary_content
+    return Glossary(glossary_name, glossary_content)
 
 
 class Glossary:
@@ -67,10 +76,3 @@ class Glossary:
 
     # def delete_glossary_unit(self):
     #     pass
-
-
-if __name__ == "__main__":
-    glossary_content = read_glossary(sys.argv[1])
-
-    general = Glossary("Developing", glossary_content)
-    general.search_source_term(sys.argv[2])

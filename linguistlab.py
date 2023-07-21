@@ -12,7 +12,7 @@ def open_glossary() -> "Glossary":
     if path.suffix != ".csv":
         raise TypeError("LinguistLab currently only supports glossaries in .csv format.")
 
-    glossary_name = path.stem.title()
+    glossary_name = path.stem
 
     glossary_content = {}
     with open(path, newline="") as glossary_file:

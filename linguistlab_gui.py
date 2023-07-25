@@ -21,6 +21,22 @@ class LLGlossaryFrame(customtkinter.CTkFrame):
         super().__init__(master)
         self.linguistlab = linguistlab
 
+        self.columnconfigure((0, 1), weight=1)
+        self.rowconfigure(0, weight=1)
+
+        self.source_box = LLGlossaryTextBox(self)
+        self.source_box.configure(corner_radius=0)
+        self.source_box.grid(row=0, column=0, sticky="nsew")
+
+        self.target_box = LLGlossaryTextBox(self)
+        self.target_box.configure(corner_radius=0)
+        self.target_box.grid(row=0, column=1, sticky="nsew")
+
+
+class LLGlossaryTextBox(customtkinter.CTkTextbox):
+    def __init__(self, master):
+        super().__init__(master)
+
 
 class LLMainWindow(customtkinter.CTk):
     def __init__(self, linguistlab):
@@ -34,12 +50,10 @@ class LLMainWindow(customtkinter.CTk):
         self.rowconfigure(0, weight=1)
 
         self.sidebar = LLSideBar(self, linguistlab)
-        # self.sidebar.configure(fg_color="red")
-        self.sidebar.grid(row=0, column=0, sticky="nswe")
+        self.sidebar.grid(row=0, column=0, sticky="nsew")
 
         self.glossary_frame = LLGlossaryFrame(self, linguistlab)
-        # self.glossary_frame.configure(fg_color="blue")
-        self.glossary_frame.grid(row=0, column=1, sticky="nswe")
+        self.glossary_frame.grid(row=0, column=1, sticky="nsew")
 
 
 if __name__ == "__main__":

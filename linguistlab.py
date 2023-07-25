@@ -5,17 +5,22 @@ from tkinter import filedialog
 from typing import Dict, List, Any, Optional
 
 
-# TODO: Handle wrongly formatted glossary/csv files and choosing "Cancel" when asking file
+# TODO: Handle wrongly formatted glossary/csv files
 def open_glossary() -> "Glossary":
-    path = pathlib.Path(filedialog.askopenfilename())
+    path = filedialog.askopenfilename()
 
-    if path.suffix != ".csv":
+    if not path:
+        return
+
+    glossary_path = pathlib.Path(path)
+
+    if glossary_path.suffix != ".csv":
         raise TypeError("LinguistLab currently only supports glossaries in .csv format.")
 
-    glossary_name = path.stem
+    glossary_name = glossary_path.stem
 
     glossary_content = {}
-    with open(path, newline="") as glossary_file:
+    with open(glossary_path, newline="") as glossary_file:
         glossary = csv.reader(glossary_file)
         for row in glossary:
             translations = []

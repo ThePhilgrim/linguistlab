@@ -157,6 +157,7 @@ vscode/
 .DS_Store
 
 test_glossary.csv
+test_glossary2.csv
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can

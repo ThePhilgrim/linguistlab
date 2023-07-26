@@ -4,9 +4,11 @@ import pathlib
 from tkinter import filedialog
 from typing import Dict, List, Any, Optional
 
+# TODO: Add functionality for term definition in glossary
+
 
 # TODO: Handle wrongly formatted glossary/csv files
-def open_glossary() -> "Glossary":
+def read_glossary_file() -> "Glossary":
     path = filedialog.askopenfilename()
 
     if not path:

@@ -36,16 +36,38 @@ class LLGlossaryTab(customtkinter.CTkFrame):
         )
         self.btn_open_glossary.grid(row=0, column=0, padx=(8), pady=(8))
 
-        # Glossary pane
-        self.glossary_pane = customtkinter.CTkFrame(self, corner_radius=0)
-        self.glossary_pane.grid(row=0, column=1, sticky="nsew")
+        # Glossary frame
+        self.glossary_frame = customtkinter.CTkFrame(self, corner_radius=0)
+        self.glossary_frame.grid(row=0, column=1, sticky="nsew")
 
-        self.glossary_pane.columnconfigure(0, weight=1)
-        self.glossary_pane.rowconfigure(0, weight=1)
+        self.glossary_frame.columnconfigure(0, weight=1)
+        self.glossary_frame.rowconfigure(1, weight=1)
 
-        # TODO: Make textbox read-only
-        self.glossary_textbox = customtkinter.CTkTextbox(self.glossary_pane, corner_radius=0)
-        self.glossary_textbox.grid(row=0, column=0, sticky="nsew")
+        # Search bars
+        self.search_frame = customtkinter.CTkFrame(self.glossary_frame, corner_radius=0)
+        self.search_frame.grid(row=0, column=0, pady=(0, 16), sticky="nsew")
+
+        self.search_frame.columnconfigure((0, 1), weight=1)
+
+        self.source_search_label = customtkinter.CTkLabel(
+            self.search_frame, text="Search source term"
+        )
+        self.source_search_label.grid(row=0, column=0, sticky="w")
+
+        self.source_search = customtkinter.CTkEntry(self.search_frame)
+        self.source_search.grid(row=1, column=0, sticky="nsew")
+
+        self.target_search_label = customtkinter.CTkLabel(
+            self.search_frame, text="Search target term"
+        )
+        self.target_search_label.grid(row=0, column=1, sticky="w")
+
+        self.target_search = customtkinter.CTkEntry(self.search_frame)
+        self.target_search.grid(row=1, column=1, sticky="nsew")
+
+        # Text box
+        self.glossary_textbox = customtkinter.CTkTextbox(self.glossary_frame, corner_radius=0)
+        self.glossary_textbox.grid(row=1, column=0, sticky="nsew")
 
     def open_glossary(self):
         glossary = linguistlab.read_glossary_file()
@@ -56,7 +78,11 @@ class LLGlossaryTab(customtkinter.CTkFrame):
 
         self.insert_glossary(glossary)
 
+    # TODO Remove when terminology search is possible
     def insert_glossary(self, glossary):
+        self.glossary_textbox.configure(state="normal")
+        self.glossary_textbox.delete("0.0", "end")
+
         row_num = 1
 
         # Make source term bold https://www.youtube.com/watch?v=X6zqePBPDVU&ab_channel=Codemy.com
@@ -72,6 +98,8 @@ class LLGlossaryTab(customtkinter.CTkFrame):
             for i in range(2):
                 self.glossary_textbox.insert(f"{row_num}.0", "\n")
                 row_num += 1
+
+        self.glossary_textbox.configure(state="disabled")
 
 
 if __name__ == "__main__":
